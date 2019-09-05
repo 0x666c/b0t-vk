@@ -1,3 +1,4 @@
+pause
 git add .
 git pull
 git commit -m "sample text"
