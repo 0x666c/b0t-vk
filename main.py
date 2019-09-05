@@ -16,12 +16,15 @@ longpoll = VkLongPoll(vk)
 # Бинд к порту heroku чтобы не крашил после 60 секунд
 
 import os
+import socket
+import sys
 ON_HEROKU = os.environ.get('ON_HEROKU')
 if ON_HEROKU:
     # get the heroku port 
     port = int(os.environ.get("PORT", 17995))  # as per OP comments default is 17995
-else:
-    port = 3000
+	ssocket = socket.socket(socket.AF_NET, socket.SOCK_STREAM)
+	server_address = ('localhost', port)
+	ssocket.bind(server_address)
 
 # Основной цикл
 for event in longpoll.listen():
