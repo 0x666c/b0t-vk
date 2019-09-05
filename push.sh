@@ -1,4 +1,5 @@
-pause
+read -p "$*"
+
 git add .
 git pull
 git commit -m "sample text"
