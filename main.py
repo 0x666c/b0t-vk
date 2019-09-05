@@ -13,6 +13,16 @@ vk = vk_api.VkApi(token=token)
 # Работа с сообщениями
 longpoll = VkLongPoll(vk)
 
+# Бинд к порту heroku чтобы не крашил после 60 секунд
+
+import os
+ON_HEROKU = os.environ.get('ON_HEROKU')
+if ON_HEROKU:
+    # get the heroku port 
+    port = int(os.environ.get("PORT", 17995))  # as per OP comments default is 17995
+else:
+    port = 3000
+
 # Основной цикл
 for event in longpoll.listen():
 
